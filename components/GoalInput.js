@@ -1,4 +1,4 @@
-import { Button, TextInput, View } from "react-native";
+import { Button, StyleSheet, TextInput, View } from "react-native";
 
 const GoalInput = (props) => {
   return (

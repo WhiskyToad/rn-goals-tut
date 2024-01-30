@@ -11,6 +11,13 @@ export default function App() {
     setGoals((currentGoals) => [...currentGoals, enteredGoal]);
     setEnteredGoal("");
   };
+
+  const deleteGoalHandler = (index) => {
+    setGoals((currentGoals) => {
+      return currentGoals.filter((goal, i) => i !== index);
+    });
+  };
+
   return (
     <View style={styles.appContainer}>
       <GoalInput
@@ -22,7 +29,13 @@ export default function App() {
         <FlatList
           data={goals}
           renderItem={(itemData) => {
-            return <GoalItem index={itemData.index} text={itemData.item} />;
+            return (
+              <GoalItem
+                index={itemData.index}
+                text={itemData.item}
+                deleteGoalHandler={deleteGoalHandler}
+              />
+            );
           }}
         />
       </View>
@@ -35,5 +48,8 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 50,
     paddingHorizontal: 16,
+  },
+  goalsContainer: {
+    flex: 5,
   },
 });
