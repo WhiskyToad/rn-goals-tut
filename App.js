@@ -6,6 +6,7 @@ import GoalInput from "./components/GoalInput";
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("");
   const [goals, setGoals] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const addGoalHandler = () => {
     setGoals((currentGoals) => [...currentGoals, enteredGoal]);
@@ -20,10 +21,17 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
+      <Button
+        title="Add New Goal"
+        color="#5e0acc"
+        onPress={() => setModalVisible(true)}
+      />
       <GoalInput
+        visible={modalVisible}
         enteredGoal={enteredGoal}
         setEnteredGoal={setEnteredGoal}
         addGoalHandler={addGoalHandler}
+        setModalVisible={setModalVisible}
       />
       <View style={styles.goalsContainer}>
         <FlatList
